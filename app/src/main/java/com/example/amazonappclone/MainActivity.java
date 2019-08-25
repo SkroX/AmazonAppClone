@@ -140,4 +140,11 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    //Opens the cart activity
+    public void openCart(View view){
+        int numberOfItems = 3;
+        
+
+    }
 }
