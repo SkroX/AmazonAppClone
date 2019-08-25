@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
+            openCart();
             return true;
         }
 
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Opens the cart activity
-    public void openCart(View view){
+    public void openCart(){
         int numberOfItems = 3;
         Intent opencart = new Intent(this,Cart.class);
         startActivity(opencart);
