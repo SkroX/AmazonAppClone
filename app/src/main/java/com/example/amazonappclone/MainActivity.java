@@ -1,5 +1,6 @@
 package com.example.amazonappclone;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -139,5 +140,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //Opens the cart activity
+    public void openCart(View view){
+        int numberOfItems = 3;
+        Intent opencart = new Intent(this,Cart.class);
+        startActivity(opencart);
+
+
+
     }
 }
