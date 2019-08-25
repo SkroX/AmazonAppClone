@@ -20,17 +20,30 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
 
+import static java.security.AccessController.getContext;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,LandingPageAdapter.OnItemListener {
+
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    static public List<Cart_items> cart_items;
 
     private ViewPager viewPager;
     int currentPage;
@@ -43,6 +56,25 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+mRecyclerView=findViewById(R.id.recyclerView);
+cart_items=new ArrayList<>();
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+
+        // specify an adapter and pass in our data model list
+
+        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        mAdapter = new LandingPageAdapter(cart_items,this,this);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -156,6 +188,31 @@ public class MainActivity extends AppCompatActivity
         startActivity(opencart);
 
 
+
+    }
+
+    @Override
+    public void OnBookClick(int position) {
+
+    }
+
+    @Override
+    public void OnBookLongClick(int position, View view) {
+
+    }
+
+    @Override
+    public void OnButton1Click(int position, View view) {
+
+    }
+
+    @Override
+    public void OnButton2Click(int position, View view) {
+
+    }
+
+    @Override
+    public void OnFavButtonClick(int position, View view) {
 
     }
 }
