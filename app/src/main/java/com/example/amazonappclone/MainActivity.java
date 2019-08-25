@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     static public List<Cart_items> cart_items;
 
+
     private ViewPager viewPager;
     int currentPage;
     private MyPager myPager;
@@ -56,8 +57,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-mRecyclerView=findViewById(R.id.recyclerView);
-cart_items=new ArrayList<>();
+        mRecyclerView=findViewById(R.id.recyclerView);
+        cart_items=new ArrayList<>();
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
@@ -184,10 +185,8 @@ cart_items=new ArrayList<>();
     //Opens the cart activity
     public void openCart(){
         int numberOfItems = 3;
-        Intent opencart = new Intent(this,Cart.class);
-        startActivity(opencart);
-
-
+        Intent openCart = new Intent(this,Cart.class);
+        startActivity(openCart);
 
     }
 

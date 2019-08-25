@@ -14,7 +14,7 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
 
-        //creating a arraylist with custom objects Cart_items for storing all items in cart
+        //creating a ArrayList with custom objects Cart_items for storing all items in cart
         ArrayList<Cart_items> cart_items = new ArrayList<Cart_items>();
 
         cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
@@ -26,7 +26,5 @@ public class Cart extends AppCompatActivity {
         cart_items_adapter adapter = new cart_items_adapter(this,cart_items);
         ListView listView = (ListView) findViewById(R.id.items);
         listView.setAdapter(adapter);
-
     }
-
 }
