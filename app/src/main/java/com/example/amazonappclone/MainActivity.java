@@ -26,12 +26,15 @@ import android.view.Menu;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.relex.circleindicator.CircleIndicator;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ViewPager viewPager;
     int currentPage;
     private MyPager myPager;
+    private CircleIndicator circleIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,9 @@ public class MainActivity extends AppCompatActivity
         myPager = new MyPager(this);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(myPager);
+
+        circleIndicator = findViewById(R.id.circle);
+        circleIndicator.setViewPager(viewPager);
 
       final   Handler handler = new Handler();
 
