@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,11 +20,11 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
 
 
 
-    private List<Cart_items> dataModelList;
+    static protected List<List<Cart_items>> dataModelList;
     private Context mContext;
     private OnItemListener mOnItemListener;
 
-    public LandingPageAdapter(List<Cart_items> modelList, Context context, OnItemListener mOnItemListener) {
+    public LandingPageAdapter(List<List<Cart_items>> modelList, Context context, OnItemListener mOnItemListener) {
         dataModelList = modelList;
         mContext = context;
         this.mOnItemListener=mOnItemListener;
@@ -33,7 +34,7 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cart_items, parent, false);
+                .inflate(R.layout.category, parent, false);
         // Return a new view holder
         return new MyViewHolder(view,mOnItemListener);
     }
@@ -59,7 +60,8 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
         Button Action1;
         Button Action2;
         ImageButton favouriteButton;
-
+        TextView title;
+        GridView gridView;
 
         public MyViewHolder(@NonNull final View itemView, final OnItemListener onItemListener) {
             super(itemView);
@@ -67,6 +69,8 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
             imageView = itemView.findViewById(R.id.item_image);
             titleTextView=itemView.findViewById(R.id.item_name);
             subTitleTextView=itemView.findViewById(R.id.item_price);
+            title = itemView.findViewById(R.id.textView2);
+            gridView=itemView.findViewById(R.id.gridVIew);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
 
@@ -95,7 +99,7 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
         }
 
 
-        public void bindData(final Cart_items dataModel, Context context) {
+        public void bindData(final List<Cart_items> dataModel, Context context) {
             /*imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_dashboard_black_24dp));
             ti0tleTextView.setText(dataModel.getTitle());
             subTitleTextView.setText(dataModel.getSubTitle());*/
@@ -103,11 +107,13 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
             //imageView.setImageBitmap(dataModel.getImage());
 //            Log.i("ye ha url",dataModel.getDownloadUri());
 
-
-
-            setImage(dataModel.getItemImageResourceId(), imageView,context);
-            titleTextView.setText(dataModel.getItemName());
-            subTitleTextView.setText(String.valueOf(dataModel.getItemPrice()));
+            title.setText(dataModel.get(0).getItemName());
+            GridViewAdapter adapter=new GridViewAdapter(context,dataModel);
+            gridView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            // setImage(dataModel.getItemImageResourceId(), imageView,context);
+//            titleTextView.setText(dataModel.getItemName());
+//            subTitleTextView.setText(String.valueOf(dataModel.getItemPrice()));
         }
 
         @Override
@@ -129,7 +135,7 @@ public class LandingPageAdapter extends RecyclerView.Adapter<LandingPageAdapter.
         // FirebaseStorage storage=FirebaseStorage.getInstance();
         //StorageReference httpsReference = storage.getReferenceFromUrl(dataModel.getDownloadUri())
 
-imageView.setImageResource(imageID);
+//imageView.setImageResource(R.drawable.amzon_image);
 
        /* try {
             final File localFile = File.createTempFile("images", "jpg");

@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity
     private MyPager myPager;
     private CircleIndicator circleIndicator;
 
+    static public List<Cart_items> electronicItems;
+    static public List<Cart_items> fashionItems;
+    static public List<List<Cart_items>> categoryItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,9 @@ cart_items=new ArrayList<>();
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
+        electronicItems=new ArrayList<>();
+        fashionItems=new ArrayList<>();
+        categoryItems=new ArrayList<>();
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -68,11 +75,27 @@ cart_items=new ArrayList<>();
 
         // specify an adapter and pass in our data model list
 
-        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        cart_items.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        mAdapter = new LandingPageAdapter(cart_items,this,this);
+
+        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+
+
+        fashionItems.add(new Cart_items("fashion1",249.00,R.drawable.amzon_image));
+        fashionItems.add(new Cart_items("fashion2",249.00,R.drawable.amzon_image));
+        fashionItems.add(new Cart_items("fashion3",249.00,R.drawable.amzon_image));
+        fashionItems.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
+        List<Cart_items> fashionItems1= new ArrayList<>();
+        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
+        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
+        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
+        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
+
+
+        categoryItems.add(electronicItems);
+        categoryItems.add(fashionItems);
+        mAdapter = new LandingPageAdapter(categoryItems,this,this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 //        FloatingActionButton fab = findViewById(R.id.fab);
