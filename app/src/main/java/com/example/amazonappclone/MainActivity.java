@@ -37,7 +37,7 @@ import me.relex.circleindicator.CircleIndicator;
 import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,LandingPageAdapter.OnItemListener {
+        implements NavigationView.OnNavigationItemSelectedListener,MultiViewTypeAdapter.OnItemListener {
 
 
     private RecyclerView mRecyclerView;
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     private CircleIndicator circleIndicator;
 
     static public List<Cart_items> electronicItems;
+    static public List<Cart_items> electronicItems1;
     static public List<Cart_items> fashionItems;
     static public List<List<Cart_items>> categoryItems;
 
@@ -60,13 +61,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-mRecyclerView=findViewById(R.id.recyclerView);
-cart_items=new ArrayList<>();
+        mRecyclerView=findViewById(R.id.recyclerView);
+        cart_items=new ArrayList<>();
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         electronicItems=new ArrayList<>();
         fashionItems=new ArrayList<>();
+        electronicItems1=new ArrayList<>();
         categoryItems=new ArrayList<>();
 
         mLayoutManager = new LinearLayoutManager(this);
@@ -75,7 +77,7 @@ cart_items=new ArrayList<>();
 
         // specify an adapter and pass in our data model list
 
-
+//
         electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
         electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
         electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
@@ -86,16 +88,23 @@ cart_items=new ArrayList<>();
         fashionItems.add(new Cart_items("fashion2",249.00,R.drawable.amzon_image));
         fashionItems.add(new Cart_items("fashion3",249.00,R.drawable.amzon_image));
         fashionItems.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
-        List<Cart_items> fashionItems1= new ArrayList<>();
-        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
-        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
-        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
-        fashionItems1.add(new Cart_items("fashion4",249.00,R.drawable.amzon_image));
+
+//        electronicItems.add(new Cart_items("fashionss1",249.00,R.drawable.amzon_image));
+//        electronicItems.add(new Cart_items("fashionss2",249.00,R.drawable.amzon_image));
+//        electronicItems.add(new Cart_items("fashionss3",249.00,R.drawable.amzon_image));
+//        electronicItems.add(new Cart_items("fashionss4",249.00,R.drawable.amzon_image));
+
+        electronicItems1.add(new Cart_items("fashiondd1",249.00,R.drawable.amzon_image));
+        electronicItems1.add(new Cart_items("fashiondd2",249.00,R.drawable.amzon_image));
+        electronicItems1.add(new Cart_items("fashiondd3",249.00,R.drawable.amzon_image));
+        electronicItems1.add(new Cart_items("fashiondd4",249.00,R.drawable.amzon_image));
 
 
         categoryItems.add(electronicItems);
+        categoryItems.add(electronicItems);
+        categoryItems.add(electronicItems1);
         categoryItems.add(fashionItems);
-        mAdapter = new LandingPageAdapter(categoryItems,this,this);
+        mAdapter = new MultiViewTypeAdapter(categoryItems,this,this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 //        FloatingActionButton fab = findViewById(R.id.fab);
@@ -107,34 +116,34 @@ cart_items=new ArrayList<>();
 //            }
 //        });
 
-        currentPage=0;
-
-        myPager = new MyPager(this);
-        viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(myPager);
-
-        circleIndicator = findViewById(R.id.circle);
-        circleIndicator.setViewPager(viewPager);
-
-      final   Handler handler = new Handler();
-
-      final   Runnable update = new Runnable() {
-            public void run() {
-                if (currentPage == 4 ) {
-                    currentPage = 0;
-                }
-                viewPager.setCurrentItem(currentPage++, true);
-            }
-        };
-
-
-        new Timer().schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        }, 400, 2000);
+//        currentPage=0;
+//
+//        myPager = new MyPager(this);
+//        viewPager = findViewById(R.id.view_pager);
+//        viewPager.setAdapter(myPager);
+//
+//        circleIndicator = findViewById(R.id.circle);
+//        circleIndicator.setViewPager(viewPager);
+//
+//      final   Handler handler = new Handler();
+//
+//      final   Runnable update = new Runnable() {
+//            public void run() {
+//                if (currentPage == 4 ) {
+//                    currentPage = 0;
+//                }
+//                viewPager.setCurrentItem(currentPage++, true);
+//            }
+//        };
+//
+//
+//        new Timer().schedule(new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//                handler.post(update);
+//            }
+//        }, 400, 2000);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -238,4 +247,5 @@ cart_items=new ArrayList<>();
     public void OnFavButtonClick(int position, View view) {
 
     }
+
 }

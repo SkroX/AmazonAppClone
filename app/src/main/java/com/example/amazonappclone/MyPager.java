@@ -8,10 +8,14 @@ import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+import java.util.ArrayList;
+
 public class MyPager extends PagerAdapter {
     private Context context;
-    public MyPager(Context context) {
+    ArrayList<Integer> image_arraylist;
+    public MyPager(Context context, ArrayList<Integer> image_arraylist) {
         this.context = context;
+        this.image_arraylist=image_arraylist;
     }
     /*
     This callback is responsible for creating a page. We inflate the layout and set the drawable
@@ -23,7 +27,12 @@ public class MyPager extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.pager_item, null);
         ImageView imageView = view.findViewById(R.id.image);
-        imageView.setImageDrawable(context.getResources().getDrawable(getImageAt(position)));
+        imageView.setImageDrawable(context.getResources().getDrawable(image_arraylist.get(position)));
+//        Picasso.with(activity.getApplicationContext())
+//                .load(image_arraylist.get(position))
+//                .placeholder(R.mipmap.ic_launcher) // optional
+//                .error(R.mipmap.ic_launcher)         // optional
+//                .into(im_slider);
         container.addView(view);
         return view;
     }
