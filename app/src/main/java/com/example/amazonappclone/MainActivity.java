@@ -3,6 +3,7 @@ package com.example.amazonappclone;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -37,7 +38,7 @@ import me.relex.circleindicator.CircleIndicator;
 import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,MultiViewTypeAdapter.OnItemListener {
+        implements NavigationView.OnNavigationItemSelectedListener,MultiViewTypeAdapter.OnItemListener , AppBarLayout.OnOffsetChangedListener{
 
 
     private RecyclerView mRecyclerView;
@@ -55,15 +56,23 @@ public class MainActivity extends AppCompatActivity
     static public List<Cart_items> fashionItems;
     static public List<List<Cart_items>> categoryItems;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppBarLayout appBarLayout=findViewById(R.id.appBar);
+        appBarLayout.addOnOffsetChangedListener(this);
         mRecyclerView=findViewById(R.id.recyclerView);
+
+
         cart_items=new ArrayList<>();
         mRecyclerView.setHasFixedSize(true);
+
 
         // use a linear layout manager
         electronicItems=new ArrayList<>();
@@ -248,4 +257,23 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+
+        if (Math.abs(i)-appBarLayout.getTotalScrollRange() == 0)
+        {
+            //  Collapsed
+            Toolbar toolbar=findViewById(R.id.toolbar);
+            toolbar.setTitle(" ");
+            setSupportActionBar(toolbar);
+
+        }
+        else
+        {
+            //Expanded
+
+
+        }
+
+    }
 }
