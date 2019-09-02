@@ -20,6 +20,7 @@ public class Cart_items {
     public double getItemPrice(){
         return mItemPrice;
     }
+
     public int getItemImageResourceId(){
         return mItemImageResourceId;
     }
