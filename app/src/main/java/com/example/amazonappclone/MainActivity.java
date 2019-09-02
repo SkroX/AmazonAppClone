@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity
     static public List<Cart_items> electronicItems1;
     static public List<Cart_items> fashionItems;
     static public List<List<Cart_items>> categoryItems;
+    ActionBarDrawerToggle toggle;
 
 
 
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 
 
         cart_items=new ArrayList<>();
-        mRecyclerView.setHasFixedSize(true);
+       // mRecyclerView.setHasFixedSize(false);
 
 
         // use a linear layout manager
@@ -87,10 +90,10 @@ public class MainActivity extends AppCompatActivity
         // specify an adapter and pass in our data model list
 
 //
-        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
-        electronicItems.add(new Cart_items("Seven Rays Be Amazing Be Revolutionary Laptop Skin Covers Fits",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("electronics1",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("electronics2",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("electronics3",249.00,R.drawable.amzon_image));
+        electronicItems.add(new Cart_items("electronics4",249.00,R.drawable.amzon_image));
 
 
         fashionItems.add(new Cart_items("fashion1",249.00,R.drawable.amzon_image));
@@ -157,7 +160,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -187,6 +190,14 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Toast.makeText(this,"das",Toast.LENGTH_SHORT).show();
+
+        if (toggle.onOptionsItemSelected(item)) {
+            Toast.makeText(this,"dasdad",Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        // Handle your other action bar items...
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
@@ -276,4 +287,6 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+
 }

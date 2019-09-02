@@ -338,6 +338,8 @@ public class MultiViewTypeAdapter extends RecyclerView.Adapter<RecyclerView.View
                        }
                    });
                    // addBottomDots(0, ((TextTypeViewHolder) holder).ll_dots);
+
+                   ((TextTypeViewHolder) holder).circleIndicator.setViewPager(((TextTypeViewHolder) holder).mvViewPager);
                    final Handler h = new Handler();
                    h.postDelayed(new Runnable() {
                        @Override
@@ -387,20 +389,20 @@ public class MultiViewTypeAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     //showing dots on screen
-    private void addBottomDots(int currentPage, LinearLayout ll_dots) {
-        TextView[] dots = new TextView[slider_image_list.size()];
-        ll_dots.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(mContext);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(Color.parseColor("#343434"));
-            ll_dots.addView(dots[i]);
-        }
-
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(Color.parseColor("#A2A2A2"));
-    }
+//    private void addBottomDots(int currentPage, LinearLayout ll_dots) {
+//        TextView[] dots = new TextView[slider_image_list.size()];
+//        ll_dots.removeAllViews();
+//        for (int i = 0; i < dots.length; i++) {
+//            dots[i] = new TextView(mContext);
+//            dots[i].setText(Html.fromHtml("&#8226;"));
+//            dots[i].setTextSize(35);
+//            dots[i].setTextColor(Color.parseColor("#343434"));
+//            ll_dots.addView(dots[i]);
+//        }
+//
+//        if (dots.length > 0)
+//            dots[currentPage].setTextColor(Color.parseColor("#A2A2A2"));
+//    }
 
 
     public interface OnItemListener{
